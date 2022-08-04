@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<label id="szoveg">XML tartalom feldolgozása...</label>
+
+<script>
+
+init();
+
+//*******************
+//XML betöltése
+//*******************
+function init()
+{
+ var kerelem = new XMLHttpRequest();
+  kerelem.onreadystatechange = function()
+  {
+    if (this.readyState == 4 && this.status == 200)
+    {
+     feldolgozas(this);
+    }
+  };
+  kerelem.open("GET", "demo.xml", true);
+  kerelem.send();
+}
+
+function feldolgozas(xml)
+{
+  var i;
+  var xmlDoc = xml.responseXML;
+  var XMLtartalom = "";
+  var myxml = xmlDoc.getElementsByTagName("TARTALOM");
+  for (i = 0; i < myxml.length; i++)
+  {
+    XMLtartalom +=
+    myxml[i].getElementsByTagName("DATUM")[0].childNodes[0].nodeValue + "<BR>" +
+    myxml[i].getElementsByTagName("BEJEGYZES")[0].childNodes[0].nodeValue + "<BR><BR>";
+  }
+  document.getElementById("szoveg").innerHTML = XMLtartalom;
+}
+</script>
+
+</body>
+</html>

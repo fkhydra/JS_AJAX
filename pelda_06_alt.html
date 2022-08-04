@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<label id="szoveg">Írjon be egy számot!.</label>
+
+<BR><BR><input type="number" id="bevitel" maxlength="10" value="5"></input>
+
+<BR><BR><button onclick="kattintas()">Négyzetre</button>
+
+<script>
+var ref_szoveg;
+var szam=0;
+
+function kattintas()
+{
+ ref_szoveg = document.getElementById("szoveg");
+ szam = document.getElementById("bevitel").value;
+
+ szam = szam * szam;
+ ref_szoveg.innerHTML = "A megadott szám négyzete: "+szam;
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<label id="szoveg">Írjon be valamit!.</label>
+
+<BR><BR><input type="text" id="bevitel" maxlength="10"></input>
+
+<BR><BR><button onclick="kattintas()">Módosít</button>
+
+<script>
+var ref_szoveg;
+var my_szoveg;
+function kattintas()
+{
+ ref_szoveg = document.getElementById("szoveg");
+ my_szoveg = document.getElementById("bevitel").value;
+
+ ref_szoveg.innerHTML = "A megadott szöveg: "+my_szoveg;
+}
+</script>
+
+</body>
+</html>

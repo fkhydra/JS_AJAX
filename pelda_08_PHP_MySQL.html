@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<BR><BR>
+<label id="szoveg">szöveg</label>
+<BR><BR>
+<textarea id="bevitel" rows="4" cols="50"></textarea>
+<BR><BR>
+<button onclick="kuldes()">Elkuld</button>
+
+<script>
+//*******************
+//a program változói
+//*******************
+var szamlalo=0;
+init();
+
+//*******************
+//program alabeállításai indításkor
+//*******************
+function init()
+{
+ var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function()
+  {
+    if (this.readyState == 4 && this.status == 200)
+    {
+      document.getElementById("szoveg").innerHTML =
+      this.responseText;
+    }
+  };
+  xhttp.open("POST", "http://localhost/mysql_select.php", true);
+  xhttp.send();
+}
+
+function kuldes()
+{
+ ++szamlalo;
+ var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function()
+  {
+    if (this.readyState == 4 && this.status == 200)
+    {
+      document.getElementById("szoveg").innerHTML =
+      szamlalo + ". adatbáziskapcsolat<BR><BR>" +
+      this.responseText;
+      init();
+    }
+  };
+  xhttp.open("POST", " http://localhost/mysql_insert.php", true);
+  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhttp.send("bevitel="+document.getElementById("bevitel").value);
+
+}
+</script>
+
+</body>
+</html>
